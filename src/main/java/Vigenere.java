@@ -2,13 +2,72 @@ import java.util.Scanner;
 
 public class Vigenere {
     public static String encryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        int oof = key.length();
+        String finalstr = "";
+        int x = 0;
+        for (int i = 0; i < message.length(); i ++) {
+            if ((int)message.charAt(i) >= 65 && (int)message.charAt(i) <= 90) {
+                int shift = ((int)(key.charAt((i-x)%oof)) % 65);
+                int ok = (int)message.charAt(i) + shift;
+                if (ok > 90)
+                    ok-=26;
+                if (ok < 65)
+                    ok += 26;
+                char ch = (char)ok;
+                finalstr += ch;
+            }
+            else if ((int)message.charAt(i) >= 97 && (int)message.charAt(i) <= 122) {
+                int shift = ((int)(key.charAt((i-x)%oof)) % 65);
+                int ok = (int)message.charAt(i) + shift;
+                if (ok > 122)
+                    ok-=26;
+                if (ok < 97)
+                    ok += 26;
+                char ch = (char)ok;
+                finalstr += ch;
+            }
+            else {
+                x += 1;
+                finalstr += (message.charAt(i));
+            }
+        }
+        return finalstr;
+        
     }
 
+
     public static String decryptVigenere(String message, String key) {
-        return message;
-        // REPLACE THIS WITH YOUR CODE
+        int oof = key.length();
+        String finalstr = "";
+        int x = 0;
+        for (int i = 0; i < message.length(); i ++) {
+            if ((int)message.charAt(i) >= 65 && (int)message.charAt(i) <= 90) {
+                int shift = ((int)(key.charAt((i-x)%oof)) % 65);
+                int ok = (int)message.charAt(i) - shift;
+                if (ok > 90)
+                    ok-=26;
+                if (ok < 65)
+                    ok += 26;
+                char ch = (char)ok;
+                finalstr += ch;
+            }
+            else if ((int)message.charAt(i) >= 97 && (int)message.charAt(i) <= 122) {
+                int shift = ((int)(key.charAt((i-x)%oof)) % 65);
+                int ok = (int)message.charAt(i) - shift;
+                if (ok > 122)
+                    ok-=26;
+                if (ok < 97)
+                    ok += 26;
+                char ch = (char)ok;
+                finalstr += ch;
+            }
+            else {
+                x += 1;
+                finalstr += (message.charAt(i));
+            }
+        }
+        return finalstr;
+        
     }
 
 
